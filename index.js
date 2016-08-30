@@ -16,7 +16,8 @@ function Radio(/*question, answers, rl*/) {
   if (!this.choices) {
     throw new Error('expected "options.choices" to be an array');
   }
-  this.pointer = ~this.setDefault();
+  this.setDefault();
+  this.pointer = 0;
   this.question.default = null;
   this.paginator = new Paginator();
 }
@@ -138,7 +139,7 @@ Radio.prototype.onNumberKey = function(event) {
 
 Radio.prototype.onSpaceKey = function() {
   this.spaceKeyPressed = true;
-  this.question.choices.toggleChoices(this.pointer);
+  this.question.toggleChoices(this.pointer);
   this.render();
 };
 
@@ -149,10 +150,8 @@ Radio.prototype.onSpaceKey = function() {
 Radio.prototype.setDefault = function() {
   if (this.question.hasDefault) {
     var idx = this.question.choices.getIndex(this.question.default);
-    this.question.choices.enable(idx);
-    return idx;
+    this.question.toggleChoices(idx);
   }
-  return -1;
 };
 
 /**
