@@ -1,7 +1,7 @@
 {
   "name": "enquirer-prompt-radio",
   "description": "Adds `radio` prompt support to Enquirer. This prompt behaves like other radio-button interfaces, where only one choice is enabled whilst all others are disabled.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "homepage": "https://github.com/enquirer/enquirer-prompt-radio",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "enquirer/enquirer-prompt-radio",
