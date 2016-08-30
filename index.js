@@ -25,7 +25,7 @@ Radio.prototype.onNumberKey = function(event) {
   var num = Number(event.value);
   if (num <= this.choices.realLength) {
     this.pointer = num - 1;
-    this.question.choices.toggleChoices(this.pointer);
+    this.question.toggleChoices(this.pointer);
   }
   this.render();
 };
