@@ -2,7 +2,7 @@
 
 var util = require('util');
 var Paginator = require('terminal-paginator');
-var Prompt = require('enquirer-prompt');
+var Prompt = require('prompt-base');
 var radio = require('radio-symbol');
 var cursor = require('cli-cursor');
 var log = require('log-utils');
@@ -16,8 +16,7 @@ function Radio(/*question, answers, rl*/) {
   if (!this.choices) {
     throw new Error('expected "options.choices" to be an array');
   }
-  this.setDefault();
-  this.pointer = this.question.choices.getIndex(this.question.default) || 0;
+  this.pointer = ~this.setDefault();
   this.question.default = null;
   this.paginator = new Paginator();
 }
@@ -66,7 +65,7 @@ Radio.prototype.render = function(error) {
 
   // Render choices or answer depending on the state
   if (this.status === 'answered') {
-    message += log.cyan(this.selection.join(', '));
+    message += log.cyan(this.selection);
   } else {
     var choicesStr = renderChoices(this.choices, this.pointer, this.options);
     var idx = this.choices.indexOf(this.choices.getChoice(this.pointer));
@@ -92,12 +91,12 @@ Radio.prototype.onError = function(answer) {
  */
 
 Radio.prototype.onSubmit = function(line) {
-  this.answer = this.getSelectedValues(line);
+  this.answer = this.getAnswerValue(line);
   this.status = 'answered';
-  this.render();
-  this.ui.write();
-  cursor.show();
-  this.callback(this.answer);
+  this.on('answer', function() {
+    cursor.show();
+  });
+  this.submitAnswer();
 };
 
 /**
@@ -128,7 +127,7 @@ Radio.prototype.onNumberKey = function(event) {
   var num = Number(event.value);
   if (num <= this.choices.realLength) {
     this.pointer = num - 1;
-    this.question.toggleChoices(this.pointer);
+    this.question.choices.toggleChoices(this.pointer);
   }
   this.render();
 };
@@ -139,7 +138,7 @@ Radio.prototype.onNumberKey = function(event) {
 
 Radio.prototype.onSpaceKey = function() {
   this.spaceKeyPressed = true;
-  this.question.toggleChoices(this.pointer);
+  this.question.choices.toggleChoices(this.pointer);
   this.render();
 };
 
@@ -148,43 +147,30 @@ Radio.prototype.onSpaceKey = function() {
  */
 
 Radio.prototype.setDefault = function() {
-  if (Array.isArray(this.question.choices)) {
-    var len = this.choices.length;
-    var idx = -1;
-    while (++idx < len) {
-      var choice = this.choices[idx];
-      if (contains(this.question.default, choice.value)) {
-        choice.checked = true;
-      }
-    }
+  if (this.question.hasDefault) {
+    var idx = this.question.choices.getIndex(this.question.default);
+    this.question.choices.enable(idx);
+    return idx;
   }
+  return -1;
 };
 
 /**
  * Get the currently selected value
  */
 
-Radio.prototype.getSelectedValues = function() {
-  var choices = this.choices.filter(function(choice) {
-    return Boolean(choice.checked) && !choice.disabled;
-  });
-  this.selection = choices.map(function(choice) {
-    return choice.short;
-  });
-  return choices.map(function(choice) {
-    return choice.value;
-  });
+Radio.prototype.getAnswerValue = function() {
+  var choices = this.question.choices.realChoices;
+  var len = choices.length;
+  var idx = -1;
+  while (++idx < len) {
+    var choice = choices[idx];
+    if (choice.checked && !choice.disabled) {
+      this.selection = choice.alias || choice.short;
+      return choice.value;
+    }
+  }
 };
-
-/**
- * Render the checkbox based on state.
- * @param  {Boolean} `checked` If enabled, adds an X to the checkbox
- * @return {String} returns the rendered radio-button string
- */
-
-function renderChoice(choice) {
-  return choice.checked ? log.green(radio.on) : radio.off;
-}
 
 /**
  * Function for rendering checkbox choices
@@ -218,6 +204,16 @@ function renderChoices(choices, pointer, options) {
 }
 
 /**
+ * Render the checkbox based on state.
+ * @param  {Boolean} `checked` If enabled, adds an X to the checkbox
+ * @return {String} returns the rendered radio-button string
+ */
+
+function renderChoice(choice) {
+  return choice.checked ? log.green(radio.on) : radio.off;
+}
+
+/**
  * Utils
  */
 
@@ -235,7 +231,7 @@ function active(choice, prefix, options) {
     options = prefix;
     prefix = null;
   }
-  return log.cyan(pointer(options) + (prefix || '') + ' ' + choice.name);
+  return log.cyan(pointer(options)) + (prefix || '') + ' ' + choice.name;
 }
 
 function pointer(options) {
@@ -251,22 +247,6 @@ function pointer(options) {
       return '❯';
     }
   }
-}
-
-/**
- * Return true if `arr` contains the given `element`
- */
-
-function contains(val, ele) {
-  return arrayify(val).indexOf(ele) !== -1;
-}
-
-/**
- * Cast `val` to an array.
- */
-
-function arrayify(val) {
-  return val ? (Array.isArray(val) ? val : [val]) : [];
 }
 
 /**
