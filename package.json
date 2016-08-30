@@ -1,17 +1,18 @@
 {
   "name": "enquirer-prompt-radio",
-  "description": "Checkbox prompt plugin for Enquirer.",
+  "description": "Adds `radio` prompt support to Enquirer. This prompt behaves like other radio-button interfaces, where only one choice is enabled whilst all others are disabled.",
   "version": "0.1.0",
-  "homepage": "https://github.com/jonschlinkert/enquirer-prompt-radio",
+  "homepage": "https://github.com/enquirer/enquirer-prompt-radio",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
-  "repository": "jonschlinkert/enquirer-prompt-radio",
+  "repository": "enquirer/enquirer-prompt-radio",
   "bugs": {
-    "url": "https://github.com/jonschlinkert/enquirer-prompt-radio/issues"
+    "url": "https://github.com/enquirer/enquirer-prompt-radio/issues"
   },
   "license": "MIT",
   "files": [
     "index.js",
-    "LICENSE"
+    "LICENSE",
+    "README.md"
   ],
   "main": "index.js",
   "engines": {
@@ -19,6 +20,17 @@
   },
   "scripts": {
     "test": "mocha"
+  },
+  "dependencies": {
+    "cli-cursor": "^1.0.2",
+    "enquirer-prompt": "^0.2.1",
+    "log-utils": "^0.2.1",
+    "radio-symbol": "^0.1.2",
+    "terminal-paginator": "^0.1.0"
+  },
+  "devDependencies": {
+    "enquirer": "^0.1.2",
+    "gulp-format-md": "^0.1.10"
   },
   "keywords": [
     "answer",
@@ -28,6 +40,7 @@
     "choice",
     "cli",
     "command",
+    "enquirer",
     "enquirerprompt",
     "input",
     "inquire",
@@ -47,9 +60,32 @@
     "tty",
     "ui"
   ],
-  "dependencies": {
-    "cli-cursor": "^1.0.2",
-    "log-utils": "^0.2.1",
-    "radio-symbol": "^0.1.0"
+  "verb": {
+    "toc": false,
+    "layout": "common-minimal",
+    "data": {
+      "alias": "radio"
+    },
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": [
+        "enquirer-prompt",
+        "enquirer-prompt-checkbox",
+        "enquirer-question"
+      ]
+    },
+    "reflinks": [
+      "enquirer",
+      "verb",
+      "verb-generate-readme"
+    ],
+    "lint": {
+      "reflinks": true
+    }
   }
 }
