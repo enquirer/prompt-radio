@@ -12,7 +12,7 @@ enquirer.question('color', 'What is your favorite color?', {
   ]
 });
 
-enquirer.ask('color')
+enquirer.prompt('color')
   .then(function(answers) {
     console.log(answers)
   });

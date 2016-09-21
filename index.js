@@ -1,13 +1,15 @@
 'use strict';
 
 var util = require('util');
-var Checkbox = require('enquirer-prompt-checkbox');
+var debug = require('debug')('prompt-radio');
+var Checkbox = require('prompt-checkbox');
 
 /**
  * Radio prompt
  */
 
 function Radio(/*question, answers, rl*/) {
+  debug('initializing from <%s>', __filename);
   Checkbox.apply(this, arguments);
 }
 
@@ -23,9 +25,9 @@ util.inherits(Radio, Checkbox);
 
 Radio.prototype.onNumberKey = function(event) {
   var num = Number(event.value);
-  if (num <= this.choices.realLength) {
-    this.pointer = num - 1;
-    this.question.toggleChoices(this.pointer);
+  if (num <= this.choices.length) {
+    this.position = num - 1;
+    this.question.toggle(this.position, true);
   }
   this.render();
 };
@@ -36,7 +38,7 @@ Radio.prototype.onNumberKey = function(event) {
 
 Radio.prototype.onSpaceKey = function() {
   this.spaceKeyPressed = true;
-  this.question.toggleChoices(this.pointer);
+  this.question.toggle(this.position, true);
   this.render();
 };
 
@@ -46,8 +48,7 @@ Radio.prototype.onSpaceKey = function() {
 
 Radio.prototype.setDefault = function() {
   if (this.question.hasDefault) {
-    var idx = this.question.choices.getIndex(this.question.default);
-    this.question.toggleChoices(idx);
+    this.question.toggle(this.choices.getIndex(this.question.default), true);
   }
 };
 
