@@ -1,12 +1,12 @@
 {
-  "name": "enquirer-prompt-radio",
-  "description": "Adds `radio` prompt support to Enquirer. This prompt behaves like other radio-button interfaces, where only one choice is enabled whilst all others are disabled.",
+  "name": "prompt-radio",
+  "description": "Radio prompt. This prompt behaves like other radio-button interfaces, where only one choice is enabled whilst all others are disabled. Can be used as a standalone prompt, or with a prompt system like [Enquirer].",
   "version": "0.2.2",
-  "homepage": "https://github.com/enquirer/enquirer-prompt-radio",
+  "homepage": "https://github.com/enquirer/prompt-radio",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
-  "repository": "enquirer/enquirer-prompt-radio",
+  "repository": "enquirer/prompt-radio",
   "bugs": {
-    "url": "https://github.com/enquirer/enquirer-prompt-radio/issues"
+    "url": "https://github.com/enquirer/prompt-radio/issues"
   },
   "license": "MIT",
   "files": [
@@ -22,12 +22,13 @@
     "test": "mocha"
   },
   "dependencies": {
-    "enquirer-prompt-checkbox": "^0.2.0"
+    "debug": "^2.2.0",
+    "prompt-checkbox": "^0.3.2"
   },
   "devDependencies": {
-    "enquirer": "^0.1.5",
+    "enquirer": "^0.3.0",
     "gulp-format-md": "^0.1.10",
-    "prompt-question": "^0.3.1"
+    "prompt-question": "^0.4.0"
   },
   "keywords": [
     "answer",
@@ -72,7 +73,7 @@
     "related": {
       "list": [
         "enquirer-prompt",
-        "enquirer-prompt-checkbox",
+        "prompt-checkbox",
         "enquirer-question"
       ]
     },
