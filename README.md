@@ -1,15 +1,15 @@
-# enquirer-prompt-radio [![NPM version](https://img.shields.io/npm/v/enquirer-prompt-radio.svg?style=flat)](https://www.npmjs.com/package/enquirer-prompt-radio) [![NPM downloads](https://img.shields.io/npm/dm/enquirer-prompt-radio.svg?style=flat)](https://npmjs.org/package/enquirer-prompt-radio)
+# prompt-radio [![NPM version](https://img.shields.io/npm/v/prompt-radio.svg?style=flat)](https://www.npmjs.com/package/prompt-radio) [![NPM downloads](https://img.shields.io/npm/dm/prompt-radio.svg?style=flat)](https://npmjs.org/package/prompt-radio)
 
 > Adds `radio` prompt support to Enquirer. This prompt behaves like other radio-button interfaces, where only one choice is enabled whilst all others are disabled.
 
-![radio prompt example](https://raw.githubusercontent.com/enquirer/enquirer-prompt-radio/master/example.gif)
+![radio prompt example](https://raw.githubusercontent.com/enquirer/prompt-radio/master/example.gif)
 
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
 
 ```sh
-$ npm install --save enquirer-prompt-radio
+$ npm install --save prompt-radio
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ $ npm install --save enquirer-prompt-radio
 var Enquirer = require('enquirer');
 var enquirer = new Enquirer();
 
-enquirer.register('radio', require('enquirer-prompt-radio'));
+enquirer.register('radio', require('prompt-radio'));
 ```
 
 ## Example
@@ -33,7 +33,7 @@ Functional style questions.
 var Enquirer = require('enquirer');
 var enquirer = new Enquirer();
 
-enquirer.register('radio', require('enquirer-prompt-radio'));
+enquirer.register('radio', require('prompt-radio'));
 enquirer.question('color', 'What is your favorite color?', {
   type: 'radio',
   default: 'blue',
@@ -54,7 +54,7 @@ Declarative questions format.
 var Enquirer = require('enquirer');
 var enquirer = new Enquirer();
 
-enquirer.register('radio', require('enquirer-prompt-radio'));
+enquirer.register('radio', require('prompt-radio'));
 
 var questions = [
   {
@@ -80,7 +80,7 @@ Partially based on the `checkbox` prompt in inquirer.
 
 ### Related projects
 
-* [enquirer-prompt-checkbox](https://www.npmjs.com/package/enquirer-prompt-checkbox): Adds checkbox prompt support to Enquirer. | [homepage](https://github.com/enquirer/enquirer-prompt-checkbox "Adds checkbox prompt support to Enquirer.")
+* [prompt-checkbox](https://www.npmjs.com/package/prompt-checkbox): Adds checkbox prompt support to Enquirer. | [homepage](https://github.com/enquirer/prompt-checkbox "Adds checkbox prompt support to Enquirer.")
 * [enquirer-prompt](https://www.npmjs.com/package/enquirer-prompt): Base prompt module used for creating custom prompt types for Enquirer. | [homepage](https://github.com/enquirer/enquirer-prompt "Base prompt module used for creating custom prompt types for Enquirer.")
 * [enquirer-question](https://www.npmjs.com/package/enquirer-question): Question object, used by Enquirer and prompt plugins. | [homepage](https://github.com/enquirer/enquirer-question "Question object, used by Enquirer and prompt plugins.")
 
@@ -106,7 +106,7 @@ $ npm install -d && npm test
 ### License
 
 Copyright © 2016, [Jon Schlinkert](https://github.com/jonschlinkert).
-Released under the [MIT license](https://github.com/enquirer/enquirer-prompt-radio/blob/master/LICENSE).
+Released under the [MIT license](https://github.com/enquirer/prompt-radio/blob/master/LICENSE).
 
 ***
 
