@@ -2,6 +2,8 @@
 
 > Radio prompt. This prompt behaves like other radio-button interfaces, where only one choice is enabled whilst all others are disabled. Can be used as a standalone prompt, or with a prompt system like [Enquirer](https://github.com/enquirer/enquirer).
 
+![prompt-radio example](https://raw.githubusercontent.com/enquirer/prompt-radio/master/example.gif)
+
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
