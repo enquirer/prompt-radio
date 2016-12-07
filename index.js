@@ -43,6 +43,14 @@ Radio.prototype.onSpaceKey = function() {
 };
 
 /**
+ * Get selected choice
+ */
+
+Radio.prototype.getSelected = function() {
+  return this.choices.checked[0];
+};
+
+/**
  * Set the default value to use
  */
 
@@ -51,6 +59,18 @@ Radio.prototype.setDefault = function() {
     this.question.toggle(this.choices.getIndex(this.question.default), true);
   }
 };
+
+/**
+ * Hide/show cursor
+ */
+
+function show() {
+  process.stdout.write('\u001b[?25h');
+}
+
+function hide() {
+  process.stdout.write('\u001b[?25l');
+}
 
 /**
  * Module exports

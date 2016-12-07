@@ -10,9 +10,7 @@
   },
   "license": "MIT",
   "files": [
-    "index.js",
-    "LICENSE",
-    "README.md"
+    "index.js"
   ],
   "main": "index.js",
   "engines": {
@@ -22,8 +20,8 @@
     "test": "mocha"
   },
   "dependencies": {
-    "debug": "^2.2.0",
-    "prompt-checkbox": "^0.3.2"
+    "debug": "^2.3.3",
+    "prompt-checkbox": "^0.4.2"
   },
   "devDependencies": {
     "enquirer": "^0.3.0",
@@ -73,8 +71,8 @@
     "related": {
       "list": [
         "enquirer-prompt",
-        "prompt-checkbox",
-        "enquirer-question"
+        "enquirer-question",
+        "prompt-checkbox"
       ]
     },
     "reflinks": [
