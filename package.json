@@ -1,7 +1,7 @@
 {
   "name": "prompt-radio",
   "description": "Radio prompt. This prompt behaves like other radio-button interfaces, where only one choice is enabled whilst all others are disabled. Can be used as a standalone prompt, or with a prompt system like [Enquirer].",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "homepage": "https://github.com/enquirer/prompt-radio",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "enquirer/prompt-radio",
