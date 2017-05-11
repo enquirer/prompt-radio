@@ -17,17 +17,17 @@ function Radio(/*question, answers, rl*/) {
  * Inherit Checkbox prompt
  */
 
-util.inherits(Radio, Checkbox);
+Checkbox.extend(Radio);
 
 /**
  * When user presses a number key
  */
 
-Radio.prototype.onNumberKey = function(event) {
-  var num = Number(event.value);
+Radio.prototype.onNumberKey = function(str, key, state) {
+  var num = Number(key.value);
   if (num <= this.choices.length) {
     this.position = num - 1;
-    this.question.toggle(this.position, true);
+    this.choices.toggle(this.position, true);
   }
   this.render();
 };
@@ -38,7 +38,7 @@ Radio.prototype.onNumberKey = function(event) {
 
 Radio.prototype.onSpaceKey = function() {
   this.spaceKeyPressed = true;
-  this.question.toggle(this.position, true);
+  this.choices.toggle(this.position, true);
   this.render();
 };
 
@@ -46,7 +46,7 @@ Radio.prototype.onSpaceKey = function() {
  * Get selected choice
  */
 
-Radio.prototype.getSelected = function() {
+Radio.prototype.getAnswer = function() {
   return this.choices.checked[0];
 };
 
@@ -56,21 +56,9 @@ Radio.prototype.getSelected = function() {
 
 Radio.prototype.setDefault = function() {
   if (this.question.hasDefault) {
-    this.question.toggle(this.choices.getIndex(this.question.default), true);
+    this.choices.toggle(this.question.default, true);
   }
 };
-
-/**
- * Hide/show cursor
- */
-
-function show() {
-  process.stdout.write('\u001b[?25h');
-}
-
-function hide() {
-  process.stdout.write('\u001b[?25l');
-}
 
 /**
  * Module exports
