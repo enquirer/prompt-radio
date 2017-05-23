@@ -1,8 +1,7 @@
 'use strict';
 
-var util = require('util');
 var debug = require('debug')('prompt-radio');
-var Prompt = require('prompt-base');
+var Checkbox = require('prompt-checkbox');
 
 /**
  * Radio prompt
@@ -10,43 +9,46 @@ var Prompt = require('prompt-base');
 
 function Radio(/*question, answers, rl*/) {
   debug('initializing from <%s>', __filename);
-  Prompt.apply(this, arguments);
+  Checkbox.apply(this, arguments);
 
-  this.choices.actions.number = function(pos, radio) {
-    if (pos <= this.choices.length && pos >= 0) {
-      this.position = pos - 1;
-      this.choices.toggle(this.position, true);
-    }
-    return pos - 1;
-  };
+  this.action('i', function(pos) {
+    return pos;
+  });
+  this.action('a', function(pos) {
+    return pos;
+  });
 
-  this.choices.actions.space = function(pos) {
-    this.choices.toggle(pos, true);
-  };
+  this.action('number', function(pos, key) {
+    return enable(this, pos, key);
+  });
+
+  this.action('space', function(pos) {
+    return enable(this, pos);
+  });
+
+  function enable(actions, pos, key) {
+    pos = actions.position(pos, key) + (key ? -1 : 0);
+    actions.choices.uncheck();
+    actions.choices.check(pos);
+    return pos;
+  }
 }
 
 /**
- * Inherit Prompt prompt
+ * Inherit Checkbox prompt
  */
 
-Prompt.extend(Radio);
+Checkbox.extend(Radio);
 
 /**
  * Get selected choice
  */
 
-Radio.prototype.getAnswer = function() {
-  return this.choices.checked[0];
-};
-
-/**
- * Set the default value to use
- */
-
-Radio.prototype.setDefault = function() {
-  if (this.question.hasDefault) {
-    this.choices.toggle(this.question.default, true);
+Radio.prototype.getAnswer = function(input) {
+  if (Array.isArray(this.options.default)) {
+    throw new TypeError('expected options.default to be a string or number');
   }
+  return Checkbox.prototype.getAnswer.call(this, arguments)[0];
 };
 
 /**
