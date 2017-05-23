@@ -1,6 +1,6 @@
 {
   "name": "prompt-radio",
-  "description": "Radio prompt. This prompt behaves like other radio-button interfaces, where only one choice is enabled whilst all others are disabled. Can be used as a standalone prompt, or with a prompt system like [Enquirer].",
+  "description": "Radio prompt. Can be used as a standalone prompt, or as a plugin for [Enquirer].",
   "version": "0.3.1",
   "homepage": "https://github.com/enquirer/prompt-radio",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
@@ -20,14 +20,15 @@
     "test": "mocha"
   },
   "dependencies": {
-    "debug": "^2.6.6",
-    "prompt-base": "^0.8.2"
+    "debug": "^2.6.8",
+    "prompt-checkbox": "^2.0.0"
   },
   "devDependencies": {
+    "ansi-colors": "^0.2.0",
     "enquirer": "^0.4.1",
     "gulp-format-md": "^0.1.12",
-    "mocha": "^3.3.0",
-    "prompt-question": "^2.0.1"
+    "mocha": "^3.4.1",
+    "strip-color": "^0.1.0"
   },
   "keywords": [
     "answer",
@@ -39,6 +40,7 @@
     "command",
     "enquirer",
     "enquirerprompt",
+    "enquirer-prompt",
     "input",
     "inquire",
     "inquirer",
@@ -48,6 +50,7 @@
     "password",
     "prompt",
     "prompts",
+    "plugin",
     "question",
     "radio",
     "readline",
