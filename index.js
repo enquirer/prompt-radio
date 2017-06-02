@@ -10,6 +10,9 @@ var Checkbox = require('prompt-checkbox');
 function Radio(/*question, answers, rl*/) {
   debug('initializing from <%s>', __filename);
   Checkbox.apply(this, arguments);
+  if (!Array.isArray(this.choices.original)) {
+    throw new TypeError('expected choices to be an array');
+  }
 
   this.action('i', function(pos) {
     return pos;
