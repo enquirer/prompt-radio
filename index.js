@@ -14,6 +14,7 @@ function Radio(/*question, answers, rl*/) {
   this.action('i', function(pos) {
     return pos;
   });
+
   this.action('a', function(pos) {
     return pos;
   });

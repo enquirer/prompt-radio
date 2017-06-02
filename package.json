@@ -21,13 +21,13 @@
   },
   "dependencies": {
     "debug": "^2.6.8",
-    "prompt-checkbox": "^2.0.0"
+    "prompt-checkbox": "^2.1.0"
   },
   "devDependencies": {
     "ansi-colors": "^0.2.0",
-    "enquirer": "^0.4.1",
+    "enquirer": "^1.0.2",
     "gulp-format-md": "^0.1.12",
-    "mocha": "^3.4.1",
+    "mocha": "^3.4.2",
     "strip-color": "^0.1.0"
   },
   "keywords": [
@@ -39,8 +39,8 @@
     "cli",
     "command",
     "enquirer",
-    "enquirerprompt",
     "enquirer-prompt",
+    "enquirerprompt",
     "input",
     "inquire",
     "inquirer",
@@ -48,9 +48,9 @@
     "list",
     "menu",
     "password",
+    "plugin",
     "prompt",
     "prompts",
-    "plugin",
     "question",
     "radio",
     "readline",
