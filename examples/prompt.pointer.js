@@ -4,16 +4,17 @@ var Radio = require('..');
 var radio = new Radio({
   name: 'color',
   message: 'What is your favorite color?',
-  pointer: '♥♥♥',
+  pointer: colors.red('♥♥♥'),
   choices: [
     'red',
     'blue',
     'yellow'
   ],
-  validate: function(input, key) {
-    var color = (input || 'white').trim();
+  validate: function() {
+    var choice = this.choices.get(this.position);
+    var name = (choice && choice.name) || 'white';
     var pointer = strip(this.question.pointer);
-    this.question.pointer = colors[color](pointer);
+    this.question.pointer = colors[name](pointer);
     return true;
   }
 });
