@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "debug": "^2.6.8",
-    "prompt-checkbox": "^2.1.0"
+    "prompt-checkbox": "^2.1.2"
   },
   "devDependencies": {
     "ansi-colors": "^0.2.0",
