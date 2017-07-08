@@ -1,7 +1,7 @@
 {
   "name": "prompt-radio",
   "description": "Radio prompt. Can be used as a standalone prompt, or as a plugin for [Enquirer].",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "homepage": "https://github.com/enquirer/prompt-radio",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "enquirer/prompt-radio",
