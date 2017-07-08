@@ -12,10 +12,6 @@ function Radio(/*question, answers, rl*/) {
   Checkbox.apply(this, arguments);
   this.question.type = 'radio';
 
-  if (!Array.isArray(this.choices.original)) {
-    throw new TypeError('expected choices to be an array');
-  }
-
   this.action('i', function(pos) {
     return pos;
   });
